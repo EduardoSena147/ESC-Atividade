@@ -59,10 +59,22 @@ function App() {
                     {atividade.nome}
                   </h5>
                   <h6> 
-                    Prioridade: Normal
+                    Prioridade: 
+                    <span className="ms-1 text-black">
+                      <i className="me-1 fa-regular fa-face-meh"></i> 
+                      Normal
+                    </span>
                   </h6>
                 </div>
                 <p className="card-text">{atividade.descricao}</p>
+                <div className="d-flex justify-content-end border-top pt-2">
+                  <button className="btn btn-outline-secondary">
+                    <i className="fa-solid fa-pen-to-square me-1"></i>Editar
+                  </button>
+                  <button className="btn btn-outline-danger ms-1">
+                    <i className="fa-solid fa-trash-can me-1"></i>Deletar
+                  </button>
+                </div>
               </div>
             </div>
           ))}
