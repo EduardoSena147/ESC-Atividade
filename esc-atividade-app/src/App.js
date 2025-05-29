@@ -30,6 +30,11 @@ function App() {
     document.getElementById("descricao").value = '';
   }
 
+  function deletarAtividade(id) {
+    const novasAtividades = atividades.filter(atividade => atividade.id !== id);
+    setAtividades([...novasAtividades]);
+  }
+
   function prioridadeLabel(param) {
     switch (param) {
       case "1":
@@ -42,6 +47,7 @@ function App() {
         return 'Indefinida';
     }
   }
+
   function prioridadeIcon(param) {
     switch (param) {
       case "1":
@@ -54,6 +60,7 @@ function App() {
         return 'meh';
     }
   }
+
   function prioridadeClass(param) {
     switch (param) {
       case "1":
@@ -66,6 +73,7 @@ function App() {
         return 'secondary';
     }
   }
+
   function retornaProximosId() {
     if (atividades.length === 0) {
       return 1;
@@ -133,7 +141,9 @@ function App() {
                   <button className="btn btn-outline-secondary">
                     <i className="fa-solid fa-pen-to-square me-1"></i>Editar
                   </button>
-                  <button className="btn btn-outline-danger ms-1">
+                  <button 
+                    className="btn btn-outline-danger ms-1" 
+                    onClick={() => deletarAtividade(atividade.id)}>
                     <i className="fa-solid fa-trash-can me-1"></i>Deletar
                   </button>
                 </div>
