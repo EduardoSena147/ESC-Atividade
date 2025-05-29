@@ -66,6 +66,13 @@ function App() {
         return 'secondary';
     }
   }
+  function retornaProximosId() {
+    if (atividades.length === 0) {
+      return 1;
+    }
+    const ultimoId = atividades[atividades.length - 1].id;
+    return parseInt(ultimoId) + 1;
+  }
 
   return (
     <>
@@ -77,7 +84,7 @@ function App() {
       <div className="col-md-6">
         <fieldset disabled>
         <label className="form-label">Id</label>
-        <input id="id" type="text" className="form-control"/>
+        <input id="id" type="text" className="form-control" value={retornaProximosId()}/>
         </fieldset>
       </div>
       <div className="col-md-6">
