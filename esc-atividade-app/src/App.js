@@ -1,6 +1,7 @@
 //import logo from './logo.svg';
 import { useState } from 'react';
 import './App.css';
+import AtividadeForm from './components/AtividadeForm';
 
 let initialState = [
   { id: "1", prioridade: "1", nome: 'Título 1', descricao: 'Descrição da Atividade 1' },
@@ -88,69 +89,48 @@ function App() {
       <h1 className="mt-3">Gerenciador de Atividades</h1>
       <p className="lead">Adicione, edite e remova atividades facilmente.</p>
       <hr/>
-      <form className="row g-3">
-      <div className="col-md-6">
-        <fieldset disabled>
-        <label className="form-label">Id</label>
-        <input id="id" type="text" className="form-control" value={retornaProximosId()}/>
-        </fieldset>
-      </div>
-      <div className="col-md-6">
-        <label className="form-label">Prioridade</label>
-        <select id="prioridade" className="form-select">
-          <option defaultValue="0">Selecione...</option>
-          <option value="1">Baixa</option>
-          <option value="2">Normal</option>
-          <option value="3">Alta</option>
-        </select>
-      </div>
-      <div className="col-md-6">
-        <label className="form-label">Título</label>
-        <input id="nome" type="text" className="form-control" placeholder="Digite o título da atividade" />
-      </div>
-      <div className="col-md-6">
-        <label className="form-label">Descrição</label>
-        <input id="descricao" type="text" className="form-control" placeholder="Digite a descrição da atividade" />
-      </div>
-      <div className="col-12">
-        <button  onClick={addAtividade} className="btn btn-outline-secondary">+ Atividade</button>
-      </div>
       
-    </form>
+      <AtividadeForm
+        addAtividade={addAtividade}
+        retornaProximosId={retornaProximosId}
+        prioridadeLabel={prioridadeLabel}
+        prioridadeIcon={prioridadeIcon}
+        prioridadeClass={prioridadeClass}
+      />
 
-    <hr/>
-    <div className="mt-3">
-          {atividades.map((atividade) => (
-            <div key={atividade.id} className={"card mb-3 border-" + prioridadeClass(atividade.prioridade) + " border-2 shadow-sm"}>
-              <div className={"card-body text-" + prioridadeClass(atividade.prioridade)}>
-                <div className="d-flex justify-content-between">
-                  <h5 className="card-title">
-                    <span className="badge bg-secondary me-1 ">{atividade.id}</span>
-                    <span className="text-black">{atividade.nome}</span>
-                  </h5>
-                  <h6> 
-                    <span className="ms-1 text-black">Prioridade:</span> 
-                    <span className="ms-1">
-                      <i className={"me-1 fa-regular fa-face-" + prioridadeIcon(atividade.prioridade) + " text-" + prioridadeClass(atividade.prioridade)}></i> 
-                      {prioridadeLabel(atividade.prioridade)}
-                    </span>
-                  </h6>
-                </div>
-                <p className="card-text text-black">{atividade.descricao}</p>
-                <div className="d-flex justify-content-end border-top pt-2">
-                  <button className="btn btn-outline-secondary">
-                    <i className="fa-solid fa-pen-to-square me-1"></i>Editar
-                  </button>
-                  <button 
-                    className="btn btn-outline-danger ms-1" 
-                    onClick={() => deletarAtividade(atividade.id)}>
-                    <i className="fa-solid fa-trash-can me-1"></i>Deletar
-                  </button>
+      <hr/>
+      <div className="mt-3">
+            {atividades.map((atividade) => (
+              <div key={atividade.id} className={"card mb-3 border-" + prioridadeClass(atividade.prioridade) + " border-2 shadow-sm"}>
+                <div className={"card-body text-" + prioridadeClass(atividade.prioridade)}>
+                  <div className="d-flex justify-content-between">
+                    <h5 className="card-title">
+                      <span className="badge bg-secondary me-1 ">{atividade.id}</span>
+                      <span className="text-black">{atividade.nome}</span>
+                    </h5>
+                    <h6> 
+                      <span className="ms-1 text-black">Prioridade:</span> 
+                      <span className="ms-1">
+                        <i className={"me-1 fa-regular fa-face-" + prioridadeIcon(atividade.prioridade) + " text-" + prioridadeClass(atividade.prioridade)}></i> 
+                        {prioridadeLabel(atividade.prioridade)}
+                      </span>
+                    </h6>
+                  </div>
+                  <p className="card-text text-black">{atividade.descricao}</p>
+                  <div className="d-flex justify-content-end border-top pt-2">
+                    <button className="btn btn-outline-secondary">
+                      <i className="fa-solid fa-pen-to-square me-1"></i>Editar
+                    </button>
+                    <button 
+                      className="btn btn-outline-danger ms-1" 
+                      onClick={() => deletarAtividade(atividade.id)}>
+                      <i className="fa-solid fa-trash-can me-1"></i>Deletar
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-    </div>
+            ))}
+      </div>
     </div>
     </>
   );
