@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './App.css';
 import AtividadeForm from './components/AtividadeForm';
 import Atividade from './components/Atividade';
+import AtividadeLista from './components/AtividadeLista';
 
 let initialState = [
   { id: "1", prioridade: "1", nome: 'Título 1', descricao: 'Descrição da Atividade 1' },
@@ -100,18 +101,14 @@ function App() {
       />
 
       <hr/>
-      <div className="mt-3">
-            {atividades.map((atividade) => (
-              <Atividade 
-                key={atividade.id}
-                atividade={atividade}
-                deletarAtividade={deletarAtividade}
-                prioridadeLabel={prioridadeLabel}
-                prioridadeIcon={prioridadeIcon}
-                prioridadeClass={prioridadeClass}
-              />
-            ))}
-      </div>
+
+      <AtividadeLista 
+        atividades={atividades}
+        deletarAtividade={deletarAtividade}
+        prioridadeLabel={prioridadeLabel}
+        prioridadeIcon={prioridadeIcon}
+        prioridadeClass={prioridadeClass}
+      />
     </div>
     </>
   );
