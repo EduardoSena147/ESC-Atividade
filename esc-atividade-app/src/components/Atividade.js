@@ -20,7 +20,9 @@ export default function Atividade(props) {
           </div>
           <p className="card-text text-black">{props.atividade.descricao}</p>
           <div className="d-flex justify-content-end border-top pt-2">
-            <button className="btn btn-outline-secondary">
+            <button 
+            className="btn btn-outline-secondary"
+            onClick={() => props.editarAtividade(props.atividade.id)}>
               <i className="fa-solid fa-pen-to-square me-1"></i>Editar
             </button>
             <button 

@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import './App.css';
 import AtividadeForm from './components/AtividadeForm';
-import Atividade from './components/Atividade';
 import AtividadeLista from './components/AtividadeLista';
 
 let initialState = [
@@ -23,14 +22,38 @@ function App() {
       nome: document.getElementById("nome").value,
       descricao: document.getElementById("descricao").value
     };
-    
-    setAtividades([...atividades, {...atividade}]);
-    console.log(atividades);
 
+    const atividadeExiste = atividades.find(atividadeFind => atividadeFind.id === atividade.id);
+    if(atividadeExiste) {
+      atualizarAtividade(atividade.id, atividade.prioridade, atividade.nome, atividade.descricao);
+    }else{
+      setAtividades([...atividades, {...atividade}]);
+    }
+    
     document.getElementById("id").value = '';
     document.getElementById("prioridade").value = '';
     document.getElementById("nome").value = '';
     document.getElementById("descricao").value = '';
+  }
+
+  function editarAtividade(id) {
+    const atividade = atividades.find(atividade => atividade.id === id);
+    if (atividade) {
+      document.getElementById("id").value = atividade.id;
+      document.getElementById("prioridade").value = atividade.prioridade;
+      document.getElementById("nome").value = atividade.nome;
+      document.getElementById("descricao").value = atividade.descricao;
+    } 
+  } 
+
+  function atualizarAtividade(id, prioridade, nome, descricao) {
+    const novasAtividades = atividades.map(atividade => {
+      if (atividade.id === id) {
+        return { ...atividade, prioridade, nome, descricao };
+      }
+      return atividade;
+    });
+    setAtividades([...novasAtividades]);
   }
 
   function deletarAtividade(id) {
@@ -105,6 +128,7 @@ function App() {
       <AtividadeLista 
         atividades={atividades}
         deletarAtividade={deletarAtividade}
+        editarAtividade={editarAtividade}
         prioridadeLabel={prioridadeLabel}
         prioridadeIcon={prioridadeIcon}
         prioridadeClass={prioridadeClass}

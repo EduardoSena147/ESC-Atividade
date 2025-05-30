@@ -7,7 +7,7 @@ export default function AtividadeForm(props) {
         <div className="col-md-6">
           <fieldset disabled>
           <label className="form-label">Id</label>
-          <input id="id" type="text" className="form-control" value={props.retornaProximosId()}/>
+          <input id="id" type="text" className="form-control" value={props.retornaProximosId()} readOnly />
           </fieldset>
         </div>
         <div className="col-md-6">
