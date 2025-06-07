@@ -43,10 +43,12 @@ function App() {
       document.getElementById("prioridade").value = atividade.prioridade;
       document.getElementById("nome").value = atividade.nome;
       document.getElementById("descricao").value = atividade.descricao;
+      document.getElementById("btnAtividade_add_upt").innerText = 'Atualizar Atividade';
     } 
   } 
 
   function atualizarAtividade(id, prioridade, nome, descricao) {
+    document.getElementById("btnAtividade_add_upt").innerText = 'Adicionar Atividade';
     const novasAtividades = atividades.map(atividade => {
       if (atividade.id === id) {
         return { ...atividade, prioridade, nome, descricao };

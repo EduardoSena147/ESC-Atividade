@@ -28,7 +28,7 @@ export default function AtividadeForm(props) {
           <input id="descricao" type="text" className="form-control" placeholder="Digite a descrição da atividade" />
         </div>
         <div className="col-12">
-          <button  onClick={props.addAtividade} className="btn btn-outline-secondary">+ Atividade</button>
+          <button id="btnAtividade_add_upt"  onClick={props.addAtividade} className="btn btn-outline-secondary">Adicionar Atividade</button>
         </div>
       </form>
     </div>
